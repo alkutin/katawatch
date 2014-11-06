@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link href="js/angular-ui/angular-ui.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="js/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>-->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="js/twitter-bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="js/bootstrap-modal/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <title>Kata Watch</title>
+    </head>
+    <body ng-app="">
+        
+        <div>
+            <h3>Kata Watch</h3>
+        </div>
+        
+        <nav>
+            <ul class="pagination">
+              <li><a id="GoButtons" href="#">Buttons</a></li>
+              <li><a id="GoLog" href="#">Log</a></li>
+            </ul>
+        </nav>
+        
+        <div id="ButtonsPanel" style="display: none">
+            <div>
+                <label for="TimerMSecs">Wait Secs:</label>
+                <select id="TimerMSecs" style="min-width: 50%; color: black;">
+                    <option value="500" label="0.5" />
+                    <option value="1000" label="1" selected />
+                    <option value="2000" label="2" />
+                    <option value="5000" label="5" />
+                    <option value="10000" label="10" />
+                    <option value="20000" label="20" />
+                    <option value="40000" label="40" />
+                </select>
+            </div>
+            <div>
+                <select id="SpeakerPhone" style="min-width: 50%; color: black;">
+                    <option value="Default" label="System" selected />
+                    <option value="Speaker" label="Speaker" />
+                    <option value="Headset" label="Headset" />
+                </select>                
+                <label for="SpeakerPhone">Speakerphone</label>
+            </div>
+            <div>
+                <input id="EnableAccel" type="checkbox" checked="checked" />
+                <label for="EnableAccel">Enable accelerometer</label>
+            </div>
+            <button id="StopCount" class="btn btn-warning btn-lg">Stop</button>
+            <button id="Count1To8" data-direct="true" data-sounds='["digits1to8"]' class="countStart btn btn-primary btn-lg">Count 1 to 8</button>
+            <button id="BasicMovs" data-direct="false" data-sounds='["hanmi","basicMovs"]' class="countStart btn btn-primary btn-lg">Basic movements</button>
+            <button id="BasicAttacks" data-direct="false" data-sounds='["hanmi","basicAttacks"]' class="countStart btn btn-primary btn-lg">Basic attacks</button>
+            <button id="BasicAttacksAndMovs" data-direct="false" data-sounds='["hanmi","basicMovs","basicAttacks"]' class="countStart btn btn-primary btn-lg">Basic attacks and moves</button>
+            
+            <button id="secondKuTachi" data-direct="false" data-sounds='["hanmi","secondKuTachiwaza","secondKuUshirowaza"]' class="countStart btn btn-primary btn-lg">2 Ku Tachi</button>
+            <button id="secondKuZagi" data-direct="false" data-sounds='["hanmi","secondKuHanmiHantachi","secondKuZagi"]' class="countStart btn btn-primary btn-lg">2 Ku Zagi</button>
+            <button id="secondKuJiyu" data-direct="false" data-sounds='["hanmi","secondKuJiyuwaza"]' class="countStart btn btn-primary btn-lg">2 Ku Jiyuwaza</button>
+            
+            <button id="JoMovs" data-direct="false" data-sounds='["hanmi","joTsukiNoBu","joMenNoBu","joHassoNoBu","joKatateNoBu","joNagareNoBu"]' class="countStart btn btn-primary btn-lg">Jo movements</button>
+            <button id="KenMovs" data-direct="false" data-sounds='["hanmi","kenSuburiNoBu","kenKirikaeshiNoBu","kenAshinofumikaiKihonNoBu","kenTsukiKihonNoBu","kenTsukiFumikomiNoBu"]' class="countStart btn btn-primary btn-lg">Ken movements</button>            
+        </div>
+        
+        <div id="LogPanel" style="display: none">
+            <input id="LogEnabled" type="checkbox" />
+            <label for="LogEnabled">Enable logging</label>
+            <ul style="list-style: none">                
+            </ul>
+        </div>
+        
+        <script type="text/javascript" src="cordova.js"></script>        
+        <script src="js/jquery/jquery.js" type="text/javascript"></script>
+        
+        <script src="js/twitter-bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/bootstrap-modal/bootstrap-modal.pack.js" type="text/javascript"></script>
+                
+        <script src="js/angular.js/angular.js" type="text/javascript"></script>
+        <script src="js/angular.js/angular-resource.js" type="text/javascript"></script>
+        
+        <script src="js/angular-ui/angular-ui.js" type="text/javascript"></script>
+        <script src="js/angular-ui/angular-ui-ieshiv.js" type="text/javascript"></script>        
+        <script src="js/angular-ui-router/angular-ui-router.js" type="text/javascript"></script>
+        <script src="js/angular-ui-bootstrap/ui-bootstrap.js" type="text/javascript"></script>
+        <script src="js/angular-ui-bootstrap/ui-bootstrap-tpls.js" type="text/javascript"></script>
+        
+        <!--<script type="text/javascript" src=""></script>        -->
+        <script type="text/javascript" src="js/ngApp/KataApp.js"></script>
+        <script type="text/javascript" src="js/ngApp/sounds.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
